@@ -7,6 +7,8 @@ NextDots Exercise - RN w/ Typescript
 	> git clone https://github.com/MaxiGT/NextDots-Exercise.git
 - Install Dependencies
 	> npm i
+- Install IOs PODs
+	> cd ios && pod install && cd ..
 - Execute for IOs
 	> npm run ios
 	> **Note:** This npm Script was modified manually to remove the *ios/build* folder on every execution in order to avoid the in-famous 	*red screens of death*
