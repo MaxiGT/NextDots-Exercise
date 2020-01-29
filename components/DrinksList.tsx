@@ -13,11 +13,11 @@ const DrinksList = (props: IncomingProps) => {
             <FlatList
                 data={props.cocktails}
                 keyExtractor={item => item.idDrink}
-                renderItem={(renderProps: any) => (
+                renderItem={({ item }: any) => (
                     <TouchableOpacity
-                        key={renderProps.item.idDrink}
+                        key={item.idDrink}
                         onPress={() => {}}>
-                                <CocktailItem name={renderProps.item.strDrink} imgSrc={renderProps.item.strDrinkThumb} />
+                                <CocktailItem name={item.strDrink} imgSrc={item.strDrinkThumb} />
                     </TouchableOpacity>
                 )}
                 initialNumToRender={5}
