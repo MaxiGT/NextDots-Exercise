@@ -35,7 +35,7 @@ class ApiService {
         return await parseJson(res);
     }
 
-    searchDrinks = (key: string) : Promise<Cocktail[]> => this.callApi(
+    searchDrinks = (key: string) : Promise<{drinks: Cocktail[]}> => this.callApi(
         `http://www.thecocktaildb.com/api/json/v1/1/search.php?s=${key}`,
         HttpMethods.GET
     )

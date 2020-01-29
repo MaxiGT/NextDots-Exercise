@@ -10,7 +10,7 @@ export default function cocktailReducer (state: ApplicationState = initialState(
             }
         case actionTypes.FETCH_DRINKS_SUCCESS:
             return {
-                ...state, isFetching: false, cocktails: action.payload.drinks
+                ...state, isFetching: false, cocktails: action.payload
             }
         case actionTypes.SET_FILTER:
             return {

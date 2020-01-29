@@ -2,6 +2,7 @@ import { actionTypes } from "./actionTypes";
 import ApiService from "../../services/apiService";
 import { Cocktail } from "types/Cocktail";
 import { ToastAndroid } from "react-native";
+import { removeEmpty } from "../../utils/drinksHelper";
 
 // Fetch Drinks List Success
 export type FetchDrinksSuccess = {
@@ -48,8 +49,9 @@ export const searchDrinks = (filter: string) => async (dispatch: any) => {
     dispatch(fetchRequest());
     const service = new ApiService();
     try {
-        const drinks = await service.searchDrinks(filter);
-        dispatch(fetchDrinksSuccess(drinks));
+        const query = await service.searchDrinks(filter);
+        const finalDrinks = query.drinks.map((d: Cocktail) => removeEmpty(d));
+        dispatch(fetchDrinksSuccess(finalDrinks));
     } catch (error) {
         ToastAndroid.show(`Error: ${error}`, ToastAndroid.LONG);
     }

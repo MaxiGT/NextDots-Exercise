@@ -16,9 +16,9 @@ const DrinksList = ({
     const emptyList = () => (
         <View>
             <Text>
-                `${ searchCriteria && searchCriteria.length > 0 ?
+                {searchCriteria && searchCriteria.length > 0 ?
                     'No se encontraron resultados para la búsqueda realizada.' :
-                    'Loading ....'}`
+                    'Por favor ingrese una búsqueda para comenzar a buscar.'}
             </Text>
         </View>
     );
