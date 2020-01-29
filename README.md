@@ -9,7 +9,7 @@ NextDots Exercise - RN w/ Typescript
 	> npm i
 - Install IOs PODs (MAC)
 	> cd ios && pod install && cd ..
-- Install Android "PODs" (Windows)
+- Clean Android Installation (Windows)
 	> cd android && gradlew clean && cd ..
 - Execute for IOs
 	> npm run ios
