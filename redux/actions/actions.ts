@@ -1,6 +1,7 @@
 import { actionTypes } from "./actionTypes";
 import ApiService from "../../services/apiService";
 import { Cocktail } from "types/Cocktail";
+import { ToastAndroid } from "react-native";
 
 // Fetch Drinks List Success
 export type FetchDrinksSuccess = {
@@ -46,6 +47,10 @@ export const filterChange = (payload: string) => ({
 export const searchDrinks = (filter: string) => async (dispatch: any) => {
     dispatch(fetchRequest());
     const service = new ApiService();
-    const drinks = await service.searchDrinks(filter);
-    dispatch(fetchDrinksSuccess(drinks));
+    try {
+        const drinks = await service.searchDrinks(filter);
+        dispatch(fetchDrinksSuccess(drinks));
+    } catch (error) {
+        ToastAndroid.show(`Error: ${error}`, ToastAndroid.LONG);
+    }
 }
