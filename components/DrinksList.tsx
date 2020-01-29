@@ -5,13 +5,28 @@ import CocktailItem from './Cocktail';
 
 type IncomingProps = {
     cocktails: Cocktail[];
+    searchCriteria: string
 }
 
-const DrinksList = (props: IncomingProps) => {
+const DrinksList = ({
+    cocktails,
+    searchCriteria
+}: IncomingProps) => {
+
+    const emptyList = () => (
+        <View>
+            <Text>
+                `${ searchCriteria && searchCriteria.length > 0 ?
+                    'No se encontraron resultados para la búsqueda realizada.' :
+                    'Loading ....'}`
+            </Text>
+        </View>
+    );
+
     return (
         <View>
             <FlatList
-                data={props.cocktails}
+                data={cocktails}
                 keyExtractor={item => item.idDrink}
                 renderItem={({ item }: any) => (
                     <TouchableOpacity
@@ -22,6 +37,7 @@ const DrinksList = (props: IncomingProps) => {
                 )}
                 initialNumToRender={5}
                 maxToRenderPerBatch={3}
+                ListEmptyComponent={emptyList}
             />
         </View>
     )

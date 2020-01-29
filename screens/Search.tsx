@@ -10,28 +10,35 @@ import DrinksList from "../components/DrinksList";
 import Spinner from '../components/Spinner';
 
 type IncomingProps = {
-    navigation: any;
     isFetching: boolean;
     searchDrinks: (filter: string) => void;
     filterChange: (filter: string) => void;
     clearFilter: () => void;
     cocktails: Cocktail[];
+    searchCriteria: string;
 }
 
-const SearchScreen = (props: IncomingProps) => {
+const SearchScreen = ({
+    isFetching,
+    searchDrinks,
+    searchCriteria,
+    cocktails,
+    filterChange,
+    clearFilter
+}: IncomingProps) => {
     return(
         <View style={styles.screenContainer}>
             <SearchBar
-                onSearch={props.searchDrinks}
-                onFilterChange={props.filterChange}
-                onClearFilter={props.clearFilter} />
+                onSearch={searchDrinks}
+                onFilterChange={filterChange}
+                onClearFilter={clearFilter} />
             {
-                props.isFetching ?
+                isFetching ?
                     (
                         <Spinner />
                     ) :
                     (
-                        <DrinksList cocktails={props.cocktails} />
+                        <DrinksList cocktails={cocktails} searchCriteria={searchCriteria} />
                     )
             }
         </View>
@@ -49,7 +56,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state: ApplicationStateReducer) => {
     return {
         isFetching: state.cocktailReducer.isFetching,
-        cocktails: state.cocktailReducer.cocktails
+        cocktails: state.cocktailReducer.cocktails,
+        searchCriteria: state.cocktailReducer.filter
     }
 }
 
