@@ -6,16 +6,19 @@ type IncomingProps = {
     imgSrc: string;
 }
 
-const CocktailItem = (props: IncomingProps) => {
+const CocktailItem = ({
+  name,
+  imgSrc
+}: IncomingProps) => {
     return (
         <View style={styles.cocktailContainer}>
             <View style={styles.cocktailNameContainer}>
-                <Text style={styles.cocktailName}>{props.name}</Text>
+                <Text style={styles.cocktailName}>{name}</Text>
             </View>
             <View style={styles.imageContainer}>
                 <Image
                   style={styles.image}
-                  source={{ uri: props.imgSrc }}
+                  source={{ uri: imgSrc }}
                 />
             </View>
         </View>
